@@ -1,9 +1,27 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import UserContext from '../context/users/UserContext';
 import userImage from "../img/ppp.jpg";
 import { Link } from 'react-router-dom';
 
 const UserBox = (props) => {
+    const [followers, setFollowers] = useState([]);
+    const host = "https://profile-page-backend.onrender.com";
+    useEffect(() => {
+        async function getFollowers() {
+            const response = await fetch(`${host}/api/followers/fetchallfollowers`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzMTk1MmQ4ZWNlZDMzOWZkYmNiNDBiIn0sImlhdCI6MTY4MDk3MTA1M30.FGEji9syHuGb6qVD4WCyf_qcmQw3wpv3FvftWaG5xB8"
+                }
+            });
+            const json = await response.json();
+            setFollowers(json);
+        }
+        getFollowers();
+    }, [])
+
+
     const context = useContext(UserContext);
     const { editUser } = context;
     const [details, setDetails] = useState({ id: "6431b3a08aa127831bfa3819", fname: "Gaurav", lname: "Sardana", email: "gaurravsarrdana@gmail.com", phone: "" });
@@ -56,22 +74,22 @@ const UserBox = (props) => {
                                 <form className='my-3'>
                                     <div className="mb-3">
                                         <label htmlFor="fname" className="form-label">First Name</label>
-                                        <input type="text" value={details.fname} className="form-control" id="fname" aria-describedby="emailHelp" name="fname" onChange={changeHandler} value={details.fname} />
+                                        <input type="text" className="form-control" id="fname" aria-describedby="emailHelp" name="fname" onChange={changeHandler} value={details.fname} />
 
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="lname" className="form-label">Last Name</label>
-                                        <input type="text" value={details.lname} className="form-control" id="lname" aria-describedby="emailHelp" name="lname" onChange={changeHandler} value={details.lname} />
+                                        <input type="text" className="form-control" id="lname" aria-describedby="emailHelp" name="lname" onChange={changeHandler} value={details.lname} />
 
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">Email Address</label>
-                                        <input type="email" value={details.email} className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={changeHandler} value={details.email} />
+                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={changeHandler} value={details.email} />
 
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="phone" className="form-label">Mobile Number</label>
-                                        <input type="phone" value={details.phone} className="form-control" id="phone" aria-describedby="emailHelp" name="phone" onChange={changeHandler} value={details.phone} />
+                                        <input type="phone" className="form-control" id="phone" aria-describedby="emailHelp" name="phone" onChange={changeHandler} value={details.phone} />
 
                                     </div>
                                 </form>
@@ -108,7 +126,7 @@ const UserBox = (props) => {
                 <div className="user-right-side">
                     <div className="user-followers-count">
                         <Link className='followersLink' to='/followers'>
-                            <span>0</span>
+                            <span className='mx-1'>{followers.length}</span>
                             Followers
                         </Link>
                     </div>

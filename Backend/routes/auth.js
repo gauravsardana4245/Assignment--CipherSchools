@@ -107,16 +107,17 @@ router.post("/login", [
 
     })
 
+//Updating user details
 router.put("/updateuser/:id", fetchuser, async (req, res) => {
     let { firstname, lastname, email, phone } = req.body;
     try {
 
         // Create a new contact object
         const newUser = {};
-        if (firstname) { newContact.firstname = firstname }
-        if (lastname) { newContact.lastname = lastname }
-        if (email) { newContact.email = email }
-        if (phone) { newContact.phone = phone }
+        if (firstname) { newUser.firstname = firstname }
+        if (lastname) { newUser.lastname = lastname }
+        if (email) { newUser.email = email }
+        if (phone) { newUser.phone = phone }
 
         // Find the contact to be updated and update it
         let user = await User.findById(req.params.id);
@@ -144,4 +145,39 @@ router.get("/getuser", fetchuser, async (req, res) => {
     }
 
 })
+
+//Updating password
+router.put("/updatepassword/:id", fetchuser, async (req, res) => {
+    let { cpassword, npassword, cnpassword } = req.body;
+    try {
+
+        // Encrypting the password
+        const salt = await bcrypt.genSalt(10);
+        const secPass = await bcrypt.hash(npassword, salt);
+
+        // Find the contact to be updated and update it
+        let user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(400).send("User not found");
+        }
+        const comparePassword = await bcrypt.compare(cpassword, user.password);
+        if (!comparePassword) {
+
+            return res.status(400).json({ success, error: "Please try to login with correct credentials : Password incorrect" });
+        }
+        if (npassword === cnpassword) {
+            user = await User.findByIdAndUpdate(req.params.id, { $set: { "password": secPass } }, { new: true });
+            success = true;
+            res.json({ user, success })
+        }
+        else {
+            return res.status(400).json({ success, error: "Passwords do not match" });
+        }
+    }
+    catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal server error occured");
+    }
+})
+
 module.exports = router

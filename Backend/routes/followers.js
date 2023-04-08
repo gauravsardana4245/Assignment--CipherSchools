@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router();
 const Follower = require("../Models/Follower")
-const { body, validationResult } = require('express-validator');
 const fetchuser = require("../middlewares/fetchuser")
 
 router.get("/fetchallfollowers", fetchuser, async (req, res) => {

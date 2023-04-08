@@ -15,9 +15,9 @@ const Container = (props) => {
                     <div className="mp-left-header">ABOUT ME</div>
                     <div className="mp-right-header">Edit</div>
                 </div>
-                <div className="mp-input-box">
+                <div className={`mp-input-box`}>
                     <textarea
-                        className={`mp-about-text bg-${mode === 'light' ? 'light' : 'dark'}`}
+                        className={`mp-about-text`}
                         name=""
                         id=""
                         cols="30"

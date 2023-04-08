@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import logo from "../img/logo.svg";
 import icon from "../img/icon.png";
 import "../styles.css";

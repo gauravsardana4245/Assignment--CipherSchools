@@ -58,7 +58,7 @@ const UserState = (props) => {
                 'Content-Type': 'application/json',
                 'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzMWIzYTA4YWExMjc4MzFiZmEzODE5In0sImlhdCI6MTY4MDk3ODg0OX0.mSx23CL4x4HcADzlgC0NfIqOk47WNF17ZWIV1BR-k3E"
             },
-            body: JSON.stringify({ firstname, lastname, email, phone })
+            body: JSON.stringify({ firstname: firstname, lastname: lastname, email: email, phone: phone })
         });
         const json = await response.json();
         console.log(json);
@@ -73,10 +73,29 @@ const UserState = (props) => {
         setUser(newUser);
 
     }
+    const updatePassword = async (cpassword, npassword, cnpassword, id) => {
+        //API call
+        const response = await fetch(`${host}/api/auth/updatepassword/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzMWIzYTA4YWExMjc4MzFiZmEzODE5In0sImlhdCI6MTY4MDk3ODg0OX0.mSx23CL4x4HcADzlgC0NfIqOk47WNF17ZWIV1BR-k3E"
+            },
+            body: JSON.stringify({ cpassword: cnpassword, npassword: npassword, cnpassword: cnpassword })
+        });
+        const json = await response.json();
+        console.log(json);
+        if (json.success) {
+            alert("Password updated successfully");
+        }
+        else {
+
+        }
+    }
 
     return (
         <div>
-            <UserContext.Provider value={{ editUser }}>
+            <UserContext.Provider value={{ user, editUser, updatePassword }}>
                 {props.children}
             </UserContext.Provider>
         </div>
