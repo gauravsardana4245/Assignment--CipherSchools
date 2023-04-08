@@ -334,7 +334,13 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.info-cell .dropdown {
+  z-index: 10;
+  background-color: white;
+}
+.info-cell .dropdown ul li {
+  z-index: 10;
+}
 /* password-manager section */
 /* .password-manager .input-field{
   background-color: initial;

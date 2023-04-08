@@ -32,11 +32,17 @@ const Navbar = (props) => {
                                 <button className={` text-${mode === 'light' ? 'black' : 'white'} btn dropdown-toggle" type="button" id="dropdownMenuButton1"`} data-bs-toggle="dropdown" aria-expanded="false">
                                     <i className=" mx-2 fa-sharp fa-regular fa-compass"></i>
                                     Browse
+                                    <i className="mx-2 fa-sharp fa-solid fa-caret-down"></i>
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item" href="/">Action</a></li>
-                                    <li><a className="dropdown-item" href="/">Another action</a></li>
-                                    <li><a className="dropdown-item" href="/">Something else here</a></li>
+                                    <li><a className="dropdown-item" href="/">App Development</a></li>
+                                    <li><a className="dropdown-item" href="/">Web Development</a></li>
+                                    <li><a className="dropdown-item" href="/">Game Development</a></li>
+                                    <li><a className="dropdown-item" href="/">Data Structures</a></li>
+                                    <li><a className="dropdown-item" href="/">Programming</a></li>
+                                    <li><a className="dropdown-item" href="/">Machine Learning</a></li>
+                                    <li><a className="dropdown-item" href="/">Data Science</a></li>
+                                    <li><a className="dropdown-item" href="/">Others</a></li>
                                 </ul>
                             </div>
 

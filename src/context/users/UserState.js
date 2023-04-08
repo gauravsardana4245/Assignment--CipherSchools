@@ -56,7 +56,7 @@ const UserState = (props) => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': localStorage.getItem("token")
+                'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzMWIzYTA4YWExMjc4MzFiZmEzODE5In0sImlhdCI6MTY4MDk3ODg0OX0.mSx23CL4x4HcADzlgC0NfIqOk47WNF17ZWIV1BR-k3E"
             },
             body: JSON.stringify({ firstname, lastname, email, phone })
         });

@@ -108,7 +108,7 @@ router.post("/login", [
     })
 
 router.put("/updateuser/:id", fetchuser, async (req, res) => {
-    let { firstname, lastname, email, mobile } = req.body;
+    let { firstname, lastname, email, phone } = req.body;
     try {
 
         // Create a new contact object

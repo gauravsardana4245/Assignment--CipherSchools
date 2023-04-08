@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const UserBox = (props) => {
     const context = useContext(UserContext);
     const { editUser } = context;
-    const [details, setDetails] = useState({ fname: "Gaurav", lname: "Sardana", email: "gaurravsarrdana@gmail.com", phone: "" });
+    const [details, setDetails] = useState({ id: "6431b3a08aa127831bfa3819", fname: "Gaurav", lname: "Sardana", email: "gaurravsarrdana@gmail.com", phone: "" });
     const { mode } = props;
     const ref = useRef(null);
     const ref2 = useRef(null);
@@ -16,6 +16,11 @@ const UserBox = (props) => {
     }
     const changeHandler = (e) => {
         setDetails({ ...details, [e.target.name]: e.target.value })
+    }
+    const submitHandler = () => {
+        editUser(details.fname, details.lname, details.email, details.phone, details.id);
+        alert(" Contact Updated Succesfully");
+        ref2.current.click()
     }
     return (
         <div className='user-box'>
@@ -50,31 +55,31 @@ const UserBox = (props) => {
                             <div className="modal-body">
                                 <form className='my-3'>
                                     <div className="mb-3">
-                                        <label htmlFor="ename" className="form-label">First Name</label>
-                                        <input type="text" className="form-control" id="fname" aria-describedby="emailHelp" name="fname" onChange={changeHandler} value={details.fname} />
+                                        <label htmlFor="fname" className="form-label">First Name</label>
+                                        <input type="text" value={details.fname} className="form-control" id="fname" aria-describedby="emailHelp" name="fname" onChange={changeHandler} value={details.fname} />
 
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="ename" className="form-label">Last Name</label>
-                                        <input type="text" className="form-control" id="lname" aria-describedby="emailHelp" name="lname" onChange={changeHandler} value={details.lname} />
+                                        <label htmlFor="lname" className="form-label">Last Name</label>
+                                        <input type="text" value={details.lname} className="form-control" id="lname" aria-describedby="emailHelp" name="lname" onChange={changeHandler} value={details.lname} />
 
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="ename" className="form-label">Email Address</label>
-                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={changeHandler} value={details.email} />
+                                        <label htmlFor="email" className="form-label">Email Address</label>
+                                        <input type="email" value={details.email} className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={changeHandler} value={details.email} />
 
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="ename" className="form-label">Mobile Number</label>
-                                        <input type="phone" className="form-control" id="phone" aria-describedby="emailHelp" name="phone" onChange={changeHandler} value={details.phone} />
+                                        <label htmlFor="phone" className="form-label">Mobile Number</label>
+                                        <input type="phone" value={details.phone} className="form-control" id="phone" aria-describedby="emailHelp" name="phone" onChange={changeHandler} value={details.phone} />
 
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" ref={ref2} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" onClick={submitHandler} className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
