@@ -1,8 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useContext, useState } from 'react';
+import UserContext from '../context/users/UserContext';
 import userImage from "../img/ppp.jpg";
 import { Link } from 'react-router-dom';
 
 const UserBox = (props) => {
+    const context = useContext(UserContext);
+    const { editUser } = context;
     const [details, setDetails] = useState({ fname: "Gaurav", lname: "Sardana", email: "gaurravsarrdana@gmail.com", phone: "" });
     const { mode } = props;
     const ref = useRef(null);
@@ -22,7 +25,7 @@ const UserBox = (props) => {
             </button>
 
 
-            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className={`modal-content bg-${mode === 'light' ? 'light' : 'dark'} text-${mode === 'light' ? 'dark' : 'light'}`} >
                         <div className="modal-header">
@@ -99,7 +102,7 @@ const UserBox = (props) => {
                 </div>
                 <div className="user-right-side">
                     <div className="user-followers-count">
-                        <Link to='/followers'>
+                        <Link className='followersLink' to='/followers'>
                             <span>0</span>
                             Followers
                         </Link>

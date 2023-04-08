@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import UserContext from './UserContext';
 
-const UserState = () => {
-    const host = "https://localhost:600";
+const UserState = (props) => {
+    const host = "https://profile-page-backend.onrender.com";
 
     const [user, setUser] = useState({});
 
@@ -62,23 +63,22 @@ const UserState = () => {
         const json = await response.json();
         console.log(json);
 
-        let newContacts = JSON.parse(JSON.stringify(contacts));
-        for (let index = 0; index < newContacts.length; index++) {
-            let element = newContacts[index];
-            if (element._id === id) {
-                newContacts[index].name = name
-                newContacts[index].mobile = mobile
-                newContacts[index].email = email
-                break;
-            }
-        }
-        setContacts(newContacts);
+        let newUser = JSON.parse(JSON.stringify(user));
+
+        newUser.firstname = firstname
+        newUser.lastname = lastname
+        newUser.email = email
+        newUser.phone = phone
+
+        setUser(newUser);
 
     }
 
     return (
         <div>
-
+            <UserContext.Provider value={{ editUser }}>
+                {props.children}
+            </UserContext.Provider>
         </div>
     )
 }

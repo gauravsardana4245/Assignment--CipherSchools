@@ -359,6 +359,10 @@
 .edit-profile-photo {
   padding: 0 20px;
 }
+.followersLink {
+  color: black;
+  text-decoration: none;
+}
 @media only screen and (min-width: 1025px) {
   .user-profile-pencil {
     bottom: 8px;

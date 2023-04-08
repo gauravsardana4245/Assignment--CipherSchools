@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import ProfilePage from './components/ProfilePage';
 import FollowersDisplay from './components/FollowersDisplay';
+import UserState from './context/users/UserState';
 
 function App() {
   const [mode, setMode] = useState("light")
@@ -31,11 +32,13 @@ function App() {
   return (
     <div className="App">
       <HashRouter>
-        <Navbar mode={mode} toggleMode={toggleMode} />
-        <Routes>
-          <Route exact path='/' element={<ProfilePage mode={mode} />} />
-          <Route exact path='/followers' element={<FollowersDisplay />} />
-        </Routes>
+        <UserState>
+          <Navbar mode={mode} toggleMode={toggleMode} />
+          <Routes>
+            <Route exact path='/' element={<ProfilePage mode={mode} />} />
+            <Route exact path='/followers' element={<FollowersDisplay />} />
+          </Routes>
+        </UserState>
       </HashRouter>
     </div>
   );
