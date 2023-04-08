@@ -20,7 +20,7 @@ const WebLinksBox = (props) => {
                             </div>
                             <div className="input-box">
                                 <div className="input-icon">
-                                    <i class="fa-brands fa-linkedin"></i>
+                                    <i className="fa-brands fa-linkedin"></i>
                                 </div>
                                 <div className="input-field">
                                     <input type="text" name="Linkedin" id="Linkedin" />
@@ -35,7 +35,7 @@ const WebLinksBox = (props) => {
                             </div>
                             <div className="input-box">
                                 <div className="input-icon">
-                                    <i class="fa-brands fa-github"></i>
+                                    <i className="fa-brands fa-github"></i>
                                 </div>
                                 <div className="input-field">
                                     <input type="text" name="Github" id="Github" />
@@ -50,7 +50,7 @@ const WebLinksBox = (props) => {
                             </div>
                             <div className="input-box">
                                 <div className="input-icon">
-                                    <i class="fa-brands fa-facebook"></i>
+                                    <i className="fa-brands fa-facebook"></i>
                                 </div>
                                 <div className="input-field">
                                     <input type="text" name="Facebook" id="Facebook" />
@@ -65,7 +65,7 @@ const WebLinksBox = (props) => {
                             </div>
                             <div className="input-box">
                                 <div className="input-icon">
-                                    <i class="fa-brands fa-twitter"></i>
+                                    <i className="fa-brands fa-twitter"></i>
                                 </div>
                                 <div className="input-field">
                                     <input type="text" name="Twitter" id="Twitter" />
@@ -80,7 +80,7 @@ const WebLinksBox = (props) => {
                             </div>
                             <div className="input-box">
                                 <div className="input-icon">
-                                    <i class="fa-brands fa-instagram"></i>
+                                    <i className="fa-brands fa-instagram"></i>
                                 </div>
                                 <div className="input-field">
                                     <input type="text" name="Instagram" id="Instagram" />
@@ -95,7 +95,7 @@ const WebLinksBox = (props) => {
                             </div>
                             <div className="input-box">
                                 <div className="input-icon">
-                                    <i class="fa-thin fa-globe"></i>
+                                    <i className="fa-thin fa-globe"></i>
                                 </div>
                                 <div className="input-field">
                                     <input type="text" name="Website" id="Website" />
