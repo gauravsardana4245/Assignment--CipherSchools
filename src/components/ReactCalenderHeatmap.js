@@ -6,7 +6,8 @@ import "../react-calendar-heatmap.css"
 
 const today = new Date();
 
-const ReactCalenderMapbox = () => {
+const ReactCalenderMapbox = (props) => {
+    const { mode } = props;
     const randomValues = getRange(365).map(index => {
         return {
             date: shiftDate(today, -index),
@@ -14,16 +15,24 @@ const ReactCalenderMapbox = () => {
         };
     });
     return (
-        <div>
+        <div >
             <CalendarHeatmap
                 startDate={shiftDate(today, -365)}
                 endDate={today}
                 values={randomValues}
                 classForValue={value => {
-                    if (!value) {
-                        return 'color-empty';
+                    if (!value && mode === 'light') {
+                        return 'color-empty-light';
                     }
-                    return `color-github-${value.count}`;
+                    else if (!value && mode === 'dark') {
+                        return 'color-empty-dark';
+                    }
+                    else if (value.count === 0 && mode === 'dark') {
+                        return 'color-empty-dark';
+                    }
+                    else {
+                        return `color-github-${value.count}`;
+                    }
                 }}
                 tooltipDataAttrs={value => {
                     return {

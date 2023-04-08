@@ -1,16 +1,18 @@
-import React from 'react'
-import logo from "../img/logo.svg"
-import icon from "../img/icon.png"
-import "../styles.css"
+import React, { useContext } from 'react';
+import logo from "../img/logo.svg";
+import icon from "../img/icon.png";
+import "../styles.css";
 
-const Navbar = () => {
+const Navbar = (props) => {
     const styleNavRight = {
         gap: "25px",
         alignItems: "center"
     }
+
+    const { toggleMode, mode } = props;
     return (
         <div>
-            <nav className="navbar navbar-expand-lg">
+            <nav className={`navbar navbar-expand-lg color-${mode === 'light' ? 'dark' : 'light'}`}>
                 <div className=" d-flex justify-content-between w-100 px-25 h-60">
                     <div className='svg h-15 w-21 mx-2 icon'>
                         <i className=" fa-solid fa-bars"></i>
@@ -19,16 +21,16 @@ const Navbar = () => {
                         
                     </a> */}
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul className={`navbar-nav me-auto mb-2 mb-lg-0 text-${mode === 'light' ? 'black' : 'white'}`}>
                             <li className="nav-item">
-                                <a className="nav-link icon-text active" aria-current="page" href="/">
+                                <a className={`nav-link icon-text active text-${mode === 'light' ? 'black' : 'white'}`} aria-current="page" href="/">
                                     <img className='navbar-brand icon h-100' src={icon} alt="" />
                                     <b>CipherSchools </b></a>
                             </li>
 
-                            <div className="dropdown">
-                                <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class=" mx-2 fa-sharp fa-regular fa-compass"></i>
+                            <div className={`dropdown text-${mode === 'light' ? 'black' : 'white'}`}>
+                                <button className={` text-${mode === 'light' ? 'black' : 'white'} btn dropdown-toggle" type="button" id="dropdownMenuButton1"`} data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i className=" mx-2 fa-sharp fa-regular fa-compass"></i>
                                     Browse
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -57,7 +59,7 @@ const Navbar = () => {
                         <img src="" alt="" />
                         <img src={logo} alt="" />
                         <div className="form-check form-switch">
-                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                            <input className="form-check-input" onClick={toggleMode} type="checkbox" role="switch" id="flexSwitchCheckChecked" />
                             <label className="form-check-label" htmlFor="flexSwitchCheckChecked"></label>
                         </div>
                     </div>

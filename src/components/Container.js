@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactCalenderMapbox from "./ReactCalenderHeatmap";
+import WebLinksBox from "./WebLinksBox";
+import ProfessionalInfo from "./ProfessionalInfo";
+import MapFoot from "./MapFoot";
+import PasswordManager from "./PasswordManager";
+import InterestsManager from "./InterestsManager";
 
-const Container = () => {
+const Container = (props) => {
+    const { mode } = props;
     return (
-        <div className="container">
+        <div className={`container-box container bg-color-${mode === 'light' ? 'light' : 'dark'}`}>
             <div className="about-me-box">
                 <div className="mp-top-row">
                     <div className="mp-left-header">ABOUT ME</div>
@@ -11,7 +17,7 @@ const Container = () => {
                 </div>
                 <div className="mp-input-box">
                     <textarea
-                        className="mp-about-text"
+                        className={`mp-about-text bg-${mode === 'light' ? 'light' : 'dark'}`}
                         name=""
                         id=""
                         cols="30"
@@ -26,127 +32,19 @@ const Container = () => {
                     <div className="mp-left-header">CIPHER MAP</div>
                 </div>
                 <div>
-                    <ReactCalenderMapbox />
+                    <ReactCalenderMapbox mode={mode} />
                 </div>
                 <div className="mp-heat-map-foot">
-                    <span>Less</span>
-                    <svg width="12" height="12">
-                        <rect width="12" height="12" fill="white"></rect>
-                    </svg>
-                    <svg width="12" height="12">
-                        <rect width="12" height="12" fill="#f3dcc4"></rect>
-                    </svg>
-                    <svg width="12" height="12">
-                        <rect width="12" height="12" fill="#e5b583"></rect>
-                    </svg>
-                    <svg width="12" height="12">
-                        <rect width="12" height="12" fill="#f6ad62"></rect>
-                    </svg>
-                    <svg width="12" height="12">
-                        <rect width="12" height="12" fill="#f3912e"></rect>
-                    </svg>
-                    <span>More</span>
+                    <MapFoot />
                 </div>
                 <div className="mp-underline"></div>
-                <div className="mp-web-links-box">
-                    <div className="mp-top-row">
-                        <div className="mp-left-header">On the web</div>
-                        <div className="mp-right-header">Edit</div>
-                    </div>
-                    <div className="mp-links-container">
-                        <div className="mp-links-box">
-                            <div className="mp-link">
-                                <div className="input-title">
-                                    Linkedin
-                                </div>
-                                <div className="input-box">
-                                    <div className="input-icon">
-                                        <i class="fa-brands fa-linkedin"></i>
-                                    </div>
-                                    <div className="input-field">
-                                        <input type="text" name="Linkedin" id="Linkedin" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mp-links-box">
-                            <div className="mp-link">
-                                <div className="input-title">
-                                    Github
-                                </div>
-                                <div className="input-box">
-                                    <div className="input-icon">
-                                        <i class="fa-brands fa-github"></i>
-                                    </div>
-                                    <div className="input-field">
-                                        <input type="text" name="Github" id="Github" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mp-links-box">
-                            <div className="mp-link">
-                                <div className="input-title">
-                                    Facebook
-                                </div>
-                                <div className="input-box">
-                                    <div className="input-icon">
-                                        <i class="fa-brands fa-facebook"></i>
-                                    </div>
-                                    <div className="input-field">
-                                        <input type="text" name="Facebook" id="Facebook" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mp-links-box">
-                            <div className="mp-link">
-                                <div className="input-title">
-                                    Twitter
-                                </div>
-                                <div className="input-box">
-                                    <div className="input-icon">
-                                        <i class="fa-brands fa-twitter"></i>
-                                    </div>
-                                    <div className="input-field">
-                                        <input type="text" name="Twitter" id="Twitter" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mp-links-box">
-                            <div className="mp-link">
-                                <div className="input-title">
-                                    Instagram
-                                </div>
-                                <div className="input-box">
-                                    <div className="input-icon">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </div>
-                                    <div className="input-field">
-                                        <input type="text" name="Instagram" id="Instagram" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mp-links-box">
-                            <div className="mp-link">
-                                <div className="input-title">
-                                    Website
-                                </div>
-                                <div className="input-box">
-                                    <div className="input-icon">
-                                        <i class="fa-thin fa-globe"></i>
-                                    </div>
-                                    <div className="input-field">
-                                        <input type="text" name="Website" id="Website" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                <WebLinksBox mode={mode} />
+                <div className="mp-underline"></div>
+                <ProfessionalInfo mode={mode} />
+                <div className="mp-underline"></div>
+                <PasswordManager />
+                <div className="mp-underline"></div>
+                <InterestsManager />
             </div>
         </div>
     );

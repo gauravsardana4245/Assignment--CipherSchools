@@ -1,16 +1,92 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import userImage from "../img/ppp.jpg";
+import { Link } from 'react-router-dom';
 
-const UserBox = () => {
+const UserBox = (props) => {
+    const [details, setDetails] = useState({ fname: "Gaurav", lname: "Sardana", email: "gaurravsarrdana@gmail.com", phone: "" });
+    const { mode } = props;
+    const ref = useRef(null);
+    const ref2 = useRef(null);
+    const ref3 = useRef(null);
+    const updateDetails = () => {
+        ref.current.click();
+    }
+    const changeHandler = (e) => {
+        setDetails({ ...details, [e.target.name]: e.target.value })
+    }
     return (
         <div className='user-box'>
+
+            <button type="button" ref={ref} class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch demo modal
+            </button>
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class={`modal-content bg-${mode === 'light' ? 'light' : 'dark'} text-${mode === 'light' ? 'dark' : 'light'}`} >
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Profile Update</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="edit-profile">
+                            <div className="edit-profile-photo">
+                                <div className="user-avatar">
+                                    <div className='user-image'>
+                                        <img src={userImage} alt="" />
+                                    </div>
+                                    <div className='user-profile-pencil'>
+
+                                        <input className='d-none' ref={ref3} type="file" />
+                                        <button onClick={() => { ref3.current.click(); }}>
+                                            <i className="fa-solid fa-pencil"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <form className='my-3'>
+                                    <div className="mb-3">
+                                        <label htmlFor="ename" className="form-label">First Name</label>
+                                        <input type="text" className="form-control" id="fname" aria-describedby="emailHelp" name="fname" onChange={changeHandler} value={details.fname} />
+
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="ename" className="form-label">Last Name</label>
+                                        <input type="text" className="form-control" id="lname" aria-describedby="emailHelp" name="lname" onChange={changeHandler} value={details.lname} />
+
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="ename" className="form-label">Email Address</label>
+                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" onChange={changeHandler} value={details.email} />
+
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="ename" className="form-label">Mobile Number</label>
+                                        <input type="phone" className="form-control" id="phone" aria-describedby="emailHelp" name="phone" onChange={changeHandler} value={details.phone} />
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div className="user-profile-box">
                 <div className="user-avatar">
                     <div className='user-image'>
                         <img src={userImage} alt="" />
                     </div>
                     <div className='user-profile-pencil'>
-                        <i class="fa-solid fa-pencil"></i>
+                        <button onClick={updateDetails}>
+                            <i className="fa-solid fa-pencil"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -23,8 +99,10 @@ const UserBox = () => {
                 </div>
                 <div className="user-right-side">
                     <div className="user-followers-count">
-                        <span>0</span>
-                        Followers
+                        <Link to='/followers'>
+                            <span>0</span>
+                            Followers
+                        </Link>
                     </div>
                 </div>
             </div>
