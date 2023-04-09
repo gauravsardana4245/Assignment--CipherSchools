@@ -140,7 +140,7 @@ const InterestsManager = (e) => {
             <div className="interests">
                 {interests.map((interest) => {
                     return <div className='interest-box'>
-                        {interest}
+                        {interest.name}
                     </div>
                 })}
             </div>
