@@ -165,7 +165,7 @@
   background-color: #f2f5fa;
   padding-left: 0;
   padding-top: 40px;
-  padding-bottom: 140px;
+  padding-bottom: 80px;
 }
 .bg-color-dark {
   background-color: black;
@@ -402,6 +402,55 @@
 .follower-item a {
   background-color: #f3912e;
   width: 100%;
+}
+.interest-modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+.interest-item {
+  align-items: center;
+  background-color: rgba(10, 30, 50, 0.1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  font-size: 15px;
+  font-weight: 550;
+  height: 40px;
+  justify-content: center;
+  line-height: 1;
+  outline: none;
+  transition: 0.15s ease;
+}
+.interest-item-toggle {
+  background-color: #f3912e;
+}
+.interests {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 1rem;
+}
+.interest-box {
+  display: flex;
+  align-items: center;
+  background-color: rgba(243, 145, 46, 0.1);
+  border-radius: 6px;
+  color: #f3912e;
+  display: flex;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 8px 15px;
+}
+.modal-content {
+  padding: 10px 10px;
+  border-radius: 14px;
+}
+.modal-dialog-centered {
+  border-radius: 14px;
 }
 @media only screen and (min-width: 1025px) {
   .user-profile-pencil {

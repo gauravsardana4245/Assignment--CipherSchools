@@ -37,8 +37,8 @@ const UserBox = (props) => {
     }
     const submitHandler = () => {
         editUser(details.fname, details.lname, details.email, details.phone, details.id);
-        alert(" Profile Updated Succesfully");
         ref2.current.click()
+        alert(" Profile Updated Succesfully");
     }
     return (
         <div className='user-box'>

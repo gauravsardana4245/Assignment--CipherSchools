@@ -19,8 +19,8 @@ const PasswordManager = (props) => {
         }
         else {
             updatePassword(password.cpassword, password.nPassword, password.cnPassword, password.id);
-            alert(" Password Updated Succesfully");
             ref2.current.click()
+            alert(" Password Updated Succesfully");
         }
     }
     return (
