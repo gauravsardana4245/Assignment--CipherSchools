@@ -27,6 +27,7 @@ var upload = multer({ storage: storage });
 app.use(cors())
 app.use('/api/auth', require('./routes/auth.js'))
 app.use('/api/followers', require('./routes/followers.js'))
+app.use('/api/interests', require('./routes/interests.js'))
 app.listen(port, () => {
     console.log(`Example app listening at port ${port}`);
 })

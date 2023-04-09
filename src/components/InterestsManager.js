@@ -1,9 +1,68 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 const InterestsManager = (e) => {
     const [interests, setInterests] = useState([])
     const ref = useRef(null);
     const ref2 = useRef(null);
+    const host = "https://profile-page-backend.onrender.com";
+    //Getting all the interests
+    useEffect(() => {
+        const getInterests = async () => {
+            //API call
+            const response = await fetch(`${host}/api/interests/fetchallinterests`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzMTk1MmQ4ZWNlZDMzOWZkYmNiNDBiIn0sImlhdCI6MTY4MDk3MTA1M30.FGEji9syHuGb6qVD4WCyf_qcmQw3wpv3FvftWaG5xB8"
+                }
+            });
+            const json = await response.json();
+            setInterests(json);
+        }
+        getInterests();
+    }, [])
+
+
+    const addInterest = async (name) => {
+
+        const response = await fetch(`${host}/api/interests/addinterest`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzMTk1MmQ4ZWNlZDMzOWZkYmNiNDBiIn0sImlhdCI6MTY4MDk3MTA1M30.FGEji9syHuGb6qVD4WCyf_qcmQw3wpv3FvftWaG5xB8"
+            },
+            body: JSON.stringify({ name: name })
+        });
+        const json = await response.json();
+        const interest = json.interest;
+        console.log(interest);
+
+        if (json.success) {
+            let newInterests = JSON.parse(JSON.stringify(interests));
+            newInterests.push(interest);
+            console.log(typeof newInterests);
+            setInterests(newInterests);
+        }
+        else {
+            alert("A interest with this name alredy exists!")
+        }
+    }
+
+    const deleteInterest = async (name) => {
+
+        //API call
+        const response = await fetch(`${host}/api/interests/deleteinterest`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQzMTk1MmQ4ZWNlZDMzOWZkYmNiNDBiIn0sImlhdCI6MTY4MDk3MTA1M30.FGEji9syHuGb6qVD4WCyf_qcmQw3wpv3FvftWaG5xB8"
+            },
+            body: JSON.stringify({ name: name })
+        });
+        console.log(response);
+
+    }
+
 
     const handleInterest = (elementno) => {
         let bgcolor = window.getComputedStyle(document.querySelector(`#interest-item-${elementno}`)).backgroundColor;
@@ -11,7 +70,7 @@ const InterestsManager = (e) => {
         if (bgcolor === 'rgba(10, 30, 50, 0.1)') {
             element.style.backgroundColor = "#f3912e"
             element.style.color = "white"
-
+            addInterest(element.textContent)
             setInterests(
                 (previnterests) => [...previnterests, element.textContent])
 
@@ -21,6 +80,7 @@ const InterestsManager = (e) => {
             element.style.backgroundColor = "rgba(10, 30, 50, 0.1)"
             element.style.color = "black"
             setInterests(interests.filter((interest) => interest !== element.textContent))
+            deleteInterest(element.textContent)
         }
         console.log(interests);
     }
@@ -31,15 +91,15 @@ const InterestsManager = (e) => {
         <div>
 
 
-            <button type="button" ref={ref} class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#interestsModal">
+            <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#interestsModal">
                 Launch demo modal
             </button>
 
 
-            <div class="modal fade" id="interestsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body interest-modal-body">
+            <div className="modal fade" id="interestsModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-body interest-modal-body">
                             <div content='App Development' onClick={() => handleInterest(1)} className="interest-item" id='interest-item-1'>
                                 App Development
                             </div>
@@ -65,9 +125,9 @@ const InterestsManager = (e) => {
                                 Others
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" ref={ref2} class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button onClick={submitHandler} type="button" class="btn btn-primary">Save</button>
+                        <div className="modal-footer">
+                            <button type="button" ref={ref2} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button onClick={submitHandler} type="button" className="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </div>

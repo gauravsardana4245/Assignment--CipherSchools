@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import ReactCalenderMapbox from "./ReactCalenderHeatmap";
 import WebLinksBox from "./WebLinksBox";
 import ProfessionalInfo from "./ProfessionalInfo";

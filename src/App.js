@@ -1,7 +1,5 @@
-import Container from './components/Container';
 import './App.css';
 import Navbar from './components/Navbar';
-import UserBox from './components/UserBox';
 import { useState } from 'react';
 import {
   HashRouter,
