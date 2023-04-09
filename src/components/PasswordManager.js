@@ -19,7 +19,7 @@ const PasswordManager = (props) => {
         }
         else {
             updatePassword(password.cpassword, password.nPassword, password.cnPassword, password.id);
-            alert(" Contact Updated Succesfully");
+            alert(" Password Updated Succesfully");
             ref2.current.click()
         }
     }
